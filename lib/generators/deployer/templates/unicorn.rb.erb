@@ -1,0 +1,10 @@
+<% root = "/home/#{@user}/#{@application}/current" %>
+<%= "root = \"#{root}\"" %>
+worker_processes 4
+working_directory "<%= root %>" # available in 0.94.0+
+listen "/tmp/unicorn.<%= @application %>.sock", :backlog => 64
+listen 8080, :tcp_nopush => true
+timeout 30
+pid "<%= root %>/tmp/pids/unicorn.pid"
+stderr_path "<%= root %>/log/unicorn.stderr.log"
+stdout_path "<%= root %>/log/unicorn.stdout.log"
